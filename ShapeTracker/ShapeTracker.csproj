@@ -1,0 +1,19 @@
+<Project Sdk="Microsoft.NET.Sdk">
+    <PropertyGroup>
+
+        <OutputType>Exe</OutputType>    
+    
+        <TargetFramework>net6.0</TargetFramework>
+    </PropertyGroup>
+    
+
+</Project>
+
+<!--
+    
+ Things to Keep in mind:
+    =>In .NET6, all Project files ends with a .csproj extenseiion
+    => It is customary(necessary) for the project file(the "csproj" file) to match the name of the Project directory
+    => <OutputType>Exe</OutputType> directs the C# compiler to create an executable file that we can run using the command: dotnet run
+    => <TargetFramework>net6.0</TargetFramework> specifies the version of the .NET Framework we are using. If we ever update the version of our Framework, we need to change our TargetFramework section to work with the new version of .NET
+ -->
