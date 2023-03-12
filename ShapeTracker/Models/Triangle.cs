@@ -69,7 +69,28 @@ namespace ShapeTracker.Models
         // Triangle coolTriangle = new Triangle(100, 010, 001);
         // Constructors create new instances of a class when the new keyword is used. new denotes that we are creating a new instance of this class
         
+        // Now I want to start writing methods for my Triangle class
+        // THe first method helps me determine whether 3 given lengths make up an isoceles or equilateral or scalene triangle
+        // This method is pretty similar to the method we created in Javascript(the checkType() method)... The only difference here is that we will be using C# and its indentation to write our code instead of using JavaScript
 
+        // Any C# class methods needs a name, a return type, Parameters, and access level modifiers(e.g public) areoptional... Don't forget; we have been adding the access level modifer: puublic to ensure our class or method is accessible anywhere in our Application
+        // Now the name for our method would be CheckType() 
+        // Here are a few things to note about our method:
+        // public is the access lebel modifier which determines where in the application our method can be accessed
+        // string is the return type of our method... NOTE: specifying the return type is a requirement of C# as a strictly-typed language. 
+        // If our method is return nothing(i.e no return value) for our method, we just input void which means noht==thing. BUT WE MUST ADD SOMETHING IN OUR METHODS whether it be a void or a datatype it will be retuening for us
+        // CheckType is name of our methods. In C#, methods are named with Pascal Casing(or UpperCamelCase)
+        // Any parameters go between the Parens() follwing the method name
+        // Between the two curly braces {} is the body of our method --- i.e any code that we want to run
+        
+
+        public string CheckType()
+        {
+            return "I can't answer that yet!";
+
+        }
+
+        // We can easily call our 
 
 
 
