@@ -68,3 +68,5 @@ namespace ShapeTracker
 // 2. It's common for entry point of the application to have a namespace name that is just the name of the Project or company.
 // 3. When .NET compiles, it locates the entry point of our application by the method name Main() and the fact that it is a static method. So we don't have to worry about our namespace or class name affecting the compiler's ability to locate the Main() method
 // The no.3 is basically saying we can name our namespaces anything without having to worry about .NET not being able to compile our code
+
+// Now moving on with my application
