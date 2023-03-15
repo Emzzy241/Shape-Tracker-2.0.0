@@ -43,11 +43,28 @@ namespace ShapeTracker
             // Having done all of this, we run our Program with the dotnet run in the ShapeTracker project directory and we'll get our output that displays to us the 3 sides and the Object type(the line we used .GetType() method to know what type of object we were dealing with)
 
             // When we call our constructor, we need to pass in an argument for each parameter, or else we'll get a compiler error.
-            Triangle testTriangle = new Triangle(100, 010, 001);
-            Console.WriteLine($"Side one of the Triangle: {testTriangle.Side1}");
-            Console.WriteLine($"Side two of the Triangle: {testTriangle.Side2}");
-            Console.WriteLine($"Side three of the Triangle: {testTriangle.Side3}");
+            Triangle testTriangle = new Triangle(3, 4, 5);
+
+            // working with our getter methods in our UI
+            Console.WriteLine($"Side one of the Triangle: {testTriangle.GetSide1()}");
+            Console.WriteLine($"Side two of the Triangle: {testTriangle.GetSide2()}");
+            Console.WriteLine($"Side three of the Triangle: {testTriangle.GetSide3()}");
             // Now I have successfully updated my code to make use of the constructor I have just created
+
+            // Calling my first Triangle instance method I wrote for Triangle that helps me check the type of a Trianle(whether it be scalene, isoceles, or equilateral)
+            Console.WriteLine("Want to know the type of triangle you have?");
+            Console.WriteLine($"Your triangle is: {testTriangle.CheckType()}");
+
+            // working with our setter methods in our UI
+            Console.WriteLine("Updating....");
+            testTriangle.SetSide1(44);
+            testTriangle.SetSide2(44);
+            testTriangle.SetSide3(70);
+            Console.WriteLine($"Actually, I've just changed the values of your triangle's sides to {testTriangle.GetSide1()}, {testTriangle.GetSide2()}, and {testTriangle.GetSide3()}.");
+            Console.WriteLine($"Now your triangle is: {testTriangle.CheckType()}");
+
+            // Now my Beautiful method gets called correctly
+            // NOTE: the CheckType() method is an instance method and it need to be called on an instance(example) of Triangle class and that is exactly what testTriangle variable is(an instance of a Triangle class)
             
         }
     }
@@ -70,3 +87,4 @@ namespace ShapeTracker
 // The no.3 is basically saying we can name our namespaces anything without having to worry about .NET not being able to compile our code
 
 // Now moving on with my application
+// At this point, we now
