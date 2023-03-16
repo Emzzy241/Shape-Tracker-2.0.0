@@ -33,12 +33,14 @@ namespace ShapeTracker.Models
     // First we add fields..... To explain fields, a C# field is eactly what a Javascript property is 
     // In more technical terms, a C# field is a variable of any type that is declared directly in a Class.
     // Here we declared our fields as variables of the integer datatype in our Triangle class
+    
+    // As you can see, the Triangle is a class; inside of it we have fields and we set the access level(public) for our fields.... Again, the publi access level modifier just ensures our class(Triangle) can be accessed anywhere in our application
     public class Triangle
     {
         // Here is what a C# field looks like:
-        public int Side1;
-        public int Side2;
-        public int Side3;
+        public int _side1;
+        public int _side2;
+        public int _side3;
         // The 3 fields: Side1, Side2, Side3. These are meant to hold the three integer values that we'll use to determine the type of a triangle.
         // As we can also see, Side1, Side2, Side3 look like variables declared within a C# class. Well that's what a field is in C#
         // We can also describe this fields as members of the Triangle class, since they belong to the Triangle class
@@ -55,9 +57,9 @@ namespace ShapeTracker.Models
 
         public Triangle(int length1, int length2, int length3)
         {
-            Side1 = length1;
-            Side2 = length2;
-            Side3 = length3;
+            _side1 = length1;
+            _side2 = length2;
+            _side3 = length3;
         }
         // To create a class constructor, we simply need to define a method of the SAME NAME of the class
         // The access modifier public means this method is available anywhere in our application.
@@ -83,14 +85,76 @@ namespace ShapeTracker.Models
         // Any parameters go between the Parens() follwing the method name
         // Between the two curly braces {} is the body of our method --- i.e any code that we want to run
         
+        // for the getter methods
+        public int GetSide1(){
+            return _side1;
+        }
+        
+        public int GetSide2(){
+            return _side2;
+        }
+        
+        public int GetSide3(){
+            return _side3;
+        }
+
+        // for the setter methods
+        // Although, our simple triangle functionality doesn't really need the ability to change the value of a side(what the Setter() method does for us) but we'll add it in to practice with getter methods
+        // In each of our setter methods 
+        // we return nothing i.e we list our set method return type as void
+        // we follow a specific naming convention: Set + NameOfField in Pascal case(e.g IamPascalCase)
+        // we include a parameter for the new value that we want to assign to the field
+        // we perform the assignment within the body of the method
+        // Take note that we could update these methods(Setter() methods) to do more actions than just assign the value of the parameter to the field. For example, we could check if parameter value meets certain requirements before assigning it as the value of our field. In this way, we have control over how the data for each field is set
+        // Finally, remember that we don't need to create a setter method if we don't need it. In other words, only create a setter method if you need to set the value of the private field outside of the class it belongs to
+        public void SetSide1(int newSide)
+        {
+            _side1 = newSide;
+        }
+
+        public void SetSide2(int newSide)
+        {
+            _side2 = newSide;
+        }
+
+        public void SetSide3(int newSide)
+        {
+            _side3 = newSide;
+        }
+
+
+
 
         public string CheckType()
         {
-            return "I can't answer that yet!";
+            // the first branching would be for the logic: not a triangle
+            // You should already know one of the basic rules of triangle states that: the addition of 2 other sides must be equal one of the side... and with the below branching we were able to achieve that rule for all Triangles
+
+            if(_side1 > (_side2 + _side3) || _side2 > (_side1 + _side3) || _side3 > (_side1 + _side2))
+            {
+                return "not a triangle";
+            }
+            // for the 2nd branch we determine if none of the 3 sides are equal, then we know it is a scalene triangle
+            else if ((_side1 != _side2) && (_side2 != _side3) && (_side1 != _side3))
+            {
+                return "Scalene Triangle";                
+            }
+            // the next branch deterines if our triangle is an equilateral triangle; don't forget thecomparism operator in C# is '==' and not '===' lke in JavaScript
+            else if((_side1 == _side2) && (_side1 == _side3))
+            {
+                return "Equilateral triangle";
+
+            }
+            else{
+                return "Isoceles triangle";
+            }
+
+            // Like I said before, this method is exactly the same with the one written in JavaScript; so for more understanding you can check out the Javascript version for this app which is the version 1.0.0
+            
 
         }
 
-        // We can easily call our 
+        // We can easily call our method in our UI logic file(Program.cs)
 
 
 
@@ -110,3 +174,34 @@ namespace ShapeTracker.Models
 // So to access our Triangle class, we do: ShapeTracker.Models.Triangle in our UI logic file(Program.cs)
 // As we can see when we add a class to a namespace, the name of our class is updated to include the namespace
 // After correcting this error and running our code, now we see that the value of testTriable(our Triangle class variable) has been updated to show both its namespaces and class name
+
+
+
+// Now moving on with my application
+// TOPIC: ACCESS MODIFIERS, BEST PRACTICES WITH FIELDS AND Getter and Setter METHODS
+// At this point, we now have the business logic functionality that we need to create a shape tracker app that functions the same as our JS version
+// But there is a bit more C# basics we need to learn and apply to our Triangle model before moving onto our user Interface logic
+// NOTE: It is NOT considered best practice to give fields a "public" level of access... You will soon know why and how you'll need to create "getter" and "setter" methods for our fields.
+// LEARNING ACCESS LEVEL MODIFIERS ===>
+// Access level modifiers also called access modifiers are applied to classes and ay class member, and they control how the class or class member can be accessed within oroutside of an assembly.
+// And a class member is any field, method, or constructor declared within a class.
+// An assembly is one or more executable output files created after we compile our code with the command(dotnet build). Assembly files end in .dll or .exe (depending on your operating system), and we can find these in our project's bin folder. The projects we create will have a varying number of files in each assembly, and we don't need to worry about keeping track of them.
+
+// In other words, access level modifier control the visibility of a class or class member: the degree to which a class or class member can be seen. For example, if a field is private it can only be seen within the class. if a field is public, it can be seen anywhere in the application
+
+// As we said earlier on, the best practice for class fields is to set them as private. Why? when we make our field public it means any method anywhere could change the field of an object and this leads to code that isn't very secure or scalable
+// When we declare fields private instead of public, this means only code within the class can directly access these fields. Any code outside the class will not have this access. This is far more secure and considered best practice. However, when we make our fields private, it prevents us from being able to directly set or retrieve fields from outside of the class with object notation like this: testTriang.Side1;
+// this is a bit awkward... the best practice dictates that the field should be private to the class, and yet we need to access the field from outside the class! More than awkward it seems unimaginable!
+
+// Well there are special methods we can create to access or alter object fields without breaking these rules. These methods are called getters and setters
+// We have updated all of our fields to have the private access modifier and how do we do that?
+// We basically followed the new naming convention; private and internal fields follow lower camel case and are preceded by an _underscore 
+// For example, the public field Side1 is now the private field _side1. This naming convention exists in order to easily distinguish public and private/internal fields
+// after we used access modifier private, we need to create Getter and Setter methods so Program.cs(our UI logic file) can access the field and not work with the private field's protection level.
+// CREATING Getter and Setter methods.... Both getter and setter methods allow is to get and set information from outside of the private field's class. As their names mply; getters are methods that "get" information and setters are methods that "set" information
+// After adding 3 public getter methods, one for each of our private fields: GetSide1(), GetSide2(), and GetSide3()... all getter methods follow the same naming convention of: Get + NameOfField in Pascal case
+// As we can see these getter methods only handle returning thte field(don't forget a getter helps to get information).
+// However, we could update these methods to do more actions than just return the field. In this way, we have control over how the data for each field is returned.
+// Finally, note that we don't have to create a getter method for every private field. If we don't need to access the field publicly, then we really don't need to create a getter method for it. Getter methods should be created on an as-needed basis(i.e only when you need them)
+
+// NEXT LESSON: There are still a lot of things to be aded into my app, and we wll be walking through each of those things
