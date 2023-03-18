@@ -87,4 +87,4 @@ namespace ShapeTracker
 // The no.3 is basically saying we can name our namespaces anything without having to worry about .NET not being able to compile our code
 
 // Now moving on with my application
-// At this point, we now
+// Having talked about APIE Encapsulation, Now its time to update our code further and add may more useful tools
