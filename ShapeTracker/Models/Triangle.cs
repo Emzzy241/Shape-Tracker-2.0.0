@@ -23,7 +23,7 @@
 using System;
 
 // Adding a namespace for our Business logic file
-// We named our namespace here ShapeTracker.Models becaue it will hold all of the classes that contain our business logic
+// We named our namespace here ShapeTracker.Models because it will hold all of the classes that are in our business logic
 // You might be thinking why don't we name it ShapeTracker.BusinessLogic... Well the Models is the standard name in C# to describe "business logic"
 
 namespace ShapeTracker.Models
@@ -51,7 +51,7 @@ namespace ShapeTracker.Models
 
 
         // ADDING A CONSTRUCTOR
-            // After we have added all our fields, let usnow improve our lives as developers and add a custom constructor that sets the values of the three sides when the triangle is created 
+            // After we have added all our fields, let us now improve our lives as developers and add a custom constructor that sets the values of the three sides when the triangle is created 
             // A constructor is a method that is called when a new instance of a class is created. Any information regarding the initial setup of new object can be included in a constructor 
             // HERE IS OUR CONSTRUCTOR
 
@@ -68,14 +68,14 @@ namespace ShapeTracker.Models
         // Between the Two curly braces {} is the body of our constructor method-- any code that we want the constructor to execute. Here, we're setting the values of our three fields, but we could perform other actions as well
         // Note that the class's fields are in Pascal case while the constructor's Parameters are lowerCamelCase.Thats because they are variables
         // To use the Constructor, in our UI logic file, we create a new instance of the Trangle object and then we pass in the 3 lengths it needs in it, we can do:
-        // Triangle coolTriangle = new Triangle(100, 010, 001);
+        // Triangle coolTriangle = new Triangle(100, 010, 001); --> here we practicalized hpw we could use our Triangle constructor to create a new instance of the Triangle object... And a triangle object must always and should always contain 3 paramters for 3 sides because thats what I told my constructor to take in before it creates a Trianlg object 
         // Constructors create new instances of a class when the new keyword is used. new denotes that we are creating a new instance of this class
         
         // Now I want to start writing methods for my Triangle class
         // THe first method helps me determine whether 3 given lengths make up an isoceles or equilateral or scalene triangle
         // This method is pretty similar to the method we created in Javascript(the checkType() method)... The only difference here is that we will be using C# and its indentation to write our code instead of using JavaScript
 
-        // Any C# class methods needs a name, a return type, Parameters, and access level modifiers(e.g public) areoptional... Don't forget; we have been adding the access level modifer: puublic to ensure our class or method is accessible anywhere in our Application
+        // Any C# class methods needs a name, a return type, Parameters, and access level modifiers(e.g public) are optional... Don't forget; we have been adding the access level modifer: puublic to ensure our class or method is accessible anywhere in our Application
         // Now the name for our method would be CheckType() 
         // Here are a few things to note about our method:
         // public is the access lebel modifier which determines where in the application our method can be accessed
