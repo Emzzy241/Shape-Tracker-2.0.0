@@ -1,6 +1,6 @@
 using System;
 using ShapeTracker.Models; // where we told C# to make use of our Business Logic folder(Models)
-using System.Collections.Generic; // since I want to make use of my List of Triangle in this UI logic file too, I need to add the namespace that is housing C# Lists
+// using System.Collections.Generic; // since I want to make use of my List of Triangle in this UI logic file too, I need to add the namespace that is housing C# Lists
 
 
 // Now to continue, we want to try using our class(which is in our Business logic folder[Models]) in our user Interface logic file(Program.cs)
@@ -13,36 +13,15 @@ namespace ShapeTracker
         static void Main()
         {
 
-            // updating the entire code to work with the list of triangles(_instances) I now have in me business logic
-            List<Triangle> allTriangles = Triangle.GetAll(); // first we call our Triangle.GetAll() method to get our static list of triangle objects.... There won't be any triangles in it yet at this time but that doesn't matter because the value of the allTriangles variable will update as we create new triangles
-            Triangle testTriangle = new Triangle(3, 4, 5);
-            Triangle secondTriangle = new Triangle(32, 74, 75);
 
-            // before the if-statement, we can update our UI logic to clear the triangles before our if statement using the beautiful Triangle.ClearAll() setter-method we wrote in our business logic
-            // This is used to check if my if-statement and my .ClearAll() setter-method actually works
-            // Triangle.ClearAll();
-            // Although I commented it out after I checked whether my if-statement and my .ClearAll() setter-method works
 
-            // a branch to determine whether or not if our list of triangles is empty
-            // in the else-statement we handle all other cases i.e whern they are triangles in our list
-            if (allTriangles.Count == 0)
-            {
-                Console.WriteLine("There are no triangles");
-            }
-            else
-            {
-                Console.WriteLine("Yay! you have triangles");
-                // the foreach I have here is saying: for each tri(a new variable that stores a triangle object) in allTriangles, I want to use my getter method(in business logic) to display all of the sides that exists in that particular triangle
-                // still in the else-statement if there are triangles, then we loop through the list and print information about each triangle
-                Console.WriteLine("--------------------");
-                foreach (Triangle tri in allTriangles)
-                {
-                    Console.WriteLine($"Side one of the triangle: {tri.GetSide1()}");
-                    Console.WriteLine($"Side two of the triangle: {tri.GetSide2()}");
-                    Console.WriteLine($"Side three of the triangle: {tri.GetSide3()}");
-                    Console.WriteLine("--------------------");
-                }
-            }
+
+            // CREATING AN AMAZING UI FOR MY APPLICATION
+
+            Console.WriteLine("*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~");
+            Console.WriteLine("Welcome to the Shape Tracker app!");
+            Console.WriteLine("We'll calculate what type of triangle you have based off of the lengths of the triangle's 3 sides.");
+
 
 
 
@@ -129,3 +108,36 @@ namespace ShapeTracker
 
 // Now moving on with my application
 // Having talked about APIE Encapsulation, Now its time to update our code further and add may more useful tools
+             /*   
+            // updating the entire code to work with the list of triangles(_instances) I now have in me business logic
+            List<Triangle> allTriangles = Triangle.GetAll(); // first we call our Triangle.GetAll() method to get our static list of triangle objects.... There won't be any triangles in it yet at this time but that doesn't matter because the value of the allTriangles variable will update as we create new triangles
+            Triangle testTriangle = new Triangle(3, 4, 5);
+            Triangle secondTriangle = new Triangle(32, 74, 75);
+
+            // before the if-statement, we can update our UI logic to clear the triangles before our if statement using the beautiful Triangle.ClearAll() setter-method we wrote in our business logic
+            // This is used to check if my if-statement and my .ClearAll() setter-method actually works
+            // Triangle.ClearAll();
+            // Although I commented it out after I checked whether my if-statement and my .ClearAll() setter-method works
+
+            // a branch to determine whether or not if our list of triangles is empty
+            // in the else-statement we handle all other cases i.e whern they are triangles in our list
+            if (allTriangles.Count == 0)
+            {
+                Console.WriteLine("There are no triangles");
+            }
+            else
+            {
+                Console.WriteLine("Yay! you have triangles");
+                // the foreach I have here is saying: for each tri(a new variable that stores a triangle object) in allTriangles, I want to use my getter method(in business logic) to display all of the sides that exists in that particular triangle
+                // still in the else-statement if there are triangles, then we loop through the list and print information about each triangle
+                Console.WriteLine("--------------------");
+                foreach (Triangle tri in allTriangles)
+                {
+                    Console.WriteLine($"Side one of the triangle: {tri.GetSide1()}");
+                    Console.WriteLine($"Side two of the triangle: {tri.GetSide2()}");
+                    Console.WriteLine($"Side three of the triangle: {tri.GetSide3()}");
+                    Console.WriteLine("--------------------");
+                }
+            }
+
+            */
