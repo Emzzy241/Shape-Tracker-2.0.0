@@ -26,6 +26,7 @@ using System;
 // We named our namespace here ShapeTracker.Models because it will hold all of the classes that are in our business logic
 // You might be thinking why don't we name it ShapeTracker.BusinessLogic... Well the Models is the standard name in C# to describe "business logic"
 
+using System.Collections.Generic;
 namespace ShapeTracker.Models
 {
 
@@ -38,9 +39,9 @@ namespace ShapeTracker.Models
     public class Triangle
     {
         // Here is what a C# field looks like:
-        public int _side1;
-        public int _side2;
-        public int _side3;
+        private int _side1;
+        private int _side2;
+        private int _side3;
         // The 3 fields: Side1, Side2, Side3. These are meant to hold the three integer values that we'll use to determine the type of a triangle.
         // As we can also see, Side1, Side2, Side3 look like variables declared within a C# class. Well that's what a field is in C#
         // We can also describe this fields as members of the Triangle class, since they belong to the Triangle class
@@ -49,17 +50,29 @@ namespace ShapeTracker.Models
         // And lastly the keyword public is one of many access level modifiers. As modifiers, keywords like public specify level of protection this data has in our application. As public, our three fieldscan be accessed from anywhere in the application
         // As far as naming conventions, public fields should be in Pascal case, or UpperCamelCase.... We used Side1, but we can also use SideOne.
 
+        
+        // when we create a static field or method for a class, i should contain data or perform functionality that's relevant to the entire class
+        // Since we want to create instances of the Triangle class, we'll want to create a field or method that's relevant to the entire class
+        // Having said all of the above, lets create a new folder called _instances that will hold a list of all Triangle objects ever created, 
+        // and add two methods that will allow us to access and clear the list
+        // to create a static, we simply need the static keyword. below is how we'll create our _instances field
+        // we declare our _instances field as private and we give it a type of List<Triangle>(a list of triangle objects)
+        // then with our =(assignment operator) we give our _instancesan initial value of an empty listof triangle objects
+        private static List<Triangle> _instances = new List<Triangle>();
+
 
         // ADDING A CONSTRUCTOR
             // After we have added all our fields, let us now improve our lives as developers and add a custom constructor that sets the values of the three sides when the triangle is created 
             // A constructor is a method that is called when a new instance of a class is created. Any information regarding the initial setup of new object can be included in a constructor 
             // HERE IS OUR CONSTRUCTOR
+            // I later updated my constructor to use to add new objectsdirctly to our static list... We can use the keyword "this" within our constructor to reference th eobject instance that i sbeing created
 
         public Triangle(int length1, int length2, int length3)
         {
             _side1 = length1;
             _side2 = length2;
             _side3 = length3;
+            _instances.Add(this); //after making use of the built-in .Add() method, we pass "this" into it ---> and "this" is the special keyword that represents the object instance(example) being created
         }
         // To create a class constructor, we simply need to define a method of the SAME NAME of the class
         // The access modifier public means this method is available anywhere in our application.
@@ -122,7 +135,29 @@ namespace ShapeTracker.Models
             _side3 = newSide;
         }
 
+        // 2 new public and staic methods with oe serving as a getter and the other one serves as a setter 
+        // dont' forget; this 2 getter and setter public-static methods are tools for accessing and managing the list(_instances and this is a list of triangle objects) outside of our classes
+        // so the class List<T> needs to be added within them
+        // Here is the first one; the getter
+        public static List<Triangle> GetAll()
+        {
+            return  _instances;
+            // the 2 slight-difference between this getter for our Lists and the other getters we have written in the past is that: 1. we included the static keyword to make this a static method called on the class and we didn't follow the getter Naming convention of: Get+ FieldName in Pascal case
+            // If we had follwed the getter naming convention we would have: GetInstances(because instances is our FieldName)... but using GetAll() is totally fine as long as you can understand your code 
+            // and remember; a getter helps us get something(in this case our list of triangle object(_instances)).... that is why we are using the "return" built-in keyword 
+        }
 
+
+        // Next is to create the static setter method which we will be naming Triangle.ClearAll() and just as the name implies; this clears all objects from our list
+        // Again our new public static getter and setter methods were created so we can access and manage Triangle objects that we store in out list of triangles(_instances)
+        // here we do not need to include a built-in List<> keyword beside the name of our setter method unlike we did with getter
+        // and this is because our setter doesn't really care whether we are returning a list or a dictionary; here our setter method is to clear all the Triangle objects we have in our list of Triangle(the static field: _instances)
+        public static void ClearAll()
+        {   
+            _instances.Clear();
+            // within the method body, we call on the built-in List<T>.Clear() method
+            // we added void here since all our ClearAll() method is doing is to clear the entire Field and not return us anything ulike the getter
+        }
 
 
         public string CheckType()
