@@ -22,8 +22,18 @@ namespace ShapeTracker
             Console.WriteLine("Welcome to the Shape Tracker app!");
             Console.WriteLine("We'll calculate what type of triangle you have based off of the lengths of the triangle's 3 sides.");
 
+            // AFTER THE WELCOME MESSAGE, now let;s give our users the ability to create Triangles
+            Console.WriteLine();
+            Console.WriteLine();
+            Console.WriteLine("Please enter a number:");
+            string stringNumber1 = Console.ReadLine();
+            Console.WriteLine("Enter another number:");
+            string stringNumber2 = Console.ReadLine();
+            Console.WriteLine("Enter a third number:");
+            string stringNumber3 = Console.ReadLine();
 
-
+            // as you already know, Console.ReadLine() only works with strings and here I'm dealing with numbers, so this strings need to be parsed to actual numbers
+            int length
 
         }
     }
