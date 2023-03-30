@@ -17,6 +17,8 @@ namespace ShapeTracker
 
 
             // CREATING AN AMAZING UI FOR MY APPLICATION
+            // The previous UI I wrote was a UI to practice my nusiness logic and not to create an interactive console app where users can run and interact with through text commands
+            // And now, with the below UI logic, I want to create something users can interact with 
 
             Console.WriteLine("*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~");
             Console.WriteLine("Welcome to the Shape Tracker app!");
@@ -33,8 +35,23 @@ namespace ShapeTracker
             string stringNumber3 = Console.ReadLine();
 
             // as you already know, Console.ReadLine() only works with strings and here I'm dealing with numbers, so this strings need to be parsed to actual numbers
-            int length
+            int length1 = int.Parse(stringNumber1);
+            int length2 = int.Parse(stringNumber2);
+            int length3 = int.Parse(stringNumber3);
 
+            // Here is the final line where we actually create a new triangle oject with the user's inputted numbers
+
+            Triangle tri = new Triangle(length1, length2, length3);
+
+            // Now we want to add in a new UI method for editting the Triangle user just created
+            // Any new method we create in our Program class(that contains our UI logic) shoul dbe static. We don't want to have to create an instance of the Program class inorder to call the method
+
+
+            // calling our static-void method that edits triangles my user has just created
+            // Note that: since this methods aim is to edit Triangles, then the triangle object(tri) my user has just created needs to be passed into it
+            // by passing in tri; it enables us to use and manipulate the same data, even though our logic is separated into multiple methods
+            
+            ConfirmOrEdit(tri);
         }
     }
 }
