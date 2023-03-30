@@ -50,11 +50,86 @@ namespace ShapeTracker
             // calling our static-void method that edits triangles my user has just created
             // Note that: since this methods aim is to edit Triangles, then the triangle object(tri) my user has just created needs to be passed into it
             // by passing in tri; it enables us to use and manipulate the same data, even though our logic is separated into multiple methods
-            
-            ConfirmOrEdit(tri);
+            // Take note that it's required for UI methods to be static, but the return type and whether or not we have parameters should be whatever makes sense for our application's needs.
+            // Our UI methods need to be static so that we don't have to create an instance of the Program class before calling an of them. Instead, as a static method, we can call on the method directly, anywhere within our class
+            ConfirmOrEditTriangle(tri);
+
+
+            // Now we have called our method and its time to write it, here are  couple of things our method will be doing:
+            // 1. Display the values for each triangle's side and ask the user if they inputted the correct values, and gather their response.
+            // 2. We evaluate the user's response if the triangles are correct, we'l  move on to checkng the type of triangle 
+            // And if the triangle's sides are incorrect, we'll gather new values for the triangle's side and then start the confirmation process all over
+
+            static void ConfirmOrEditTriangle(Triangle tri)
+            {
+                Console.WriteLine("Please confirm that you enterred in your triangle correctly:");
+                Console.WriteLine($"Side 1 has the length of {tri.GetSide1}");
+                Console.WriteLine($"Side 2 has the length of {tri.GetSide2}");
+                Console.WriteLine($"Side 3 has the length of {tri.GetSide3}");
+                Console.WriteLine();
+                Console.WriteLine("Is that correct? Enter 'yes' to proceed, or 'no' to re-enter the triangle's sides");
+                string userInput = Console.ReadLine().ToUpper();
+
+                // I used .ToUpper() just because I wanted to ensure my application sees a yes as a YES or yES(i.e just ensuring my app works with different forms of capitalization)
+
+                // Now let us move on to branching that determines whether user would like to change the 3 values they gave me for the triangl eobject or not
+                if (userInput == "YES")
+                {
+                    // Here we just call on the .CheckTriangleType() UI method and this chescks the type of a triangle(e.g: isoceles)
+                    // we made this a method instead of writing the code here to practice a good separation of concerns(since edit functionality is different from triangle type check functionality its best to separate them into different methods)
+                    // Although we have not created that method yet
+                    CheckTriangleType();
+                }
+                else
+                {
+                    Console.WriteLine("Let's fix your triangle. Please enter the 3 sides again");
+                    Console.WriteLine("Please enter a number");
+                    Console.WriteLine("Please enter a number:");
+                    string stringNumber1 = Console.ReadLine();
+                    Console.WriteLine("Enter another number:");
+                    string stringNumber2 = Console.ReadLine();
+                    Console.WriteLine("Enter a third number:");
+                    string stringNumber3 = Console.ReadLine();
+
+                    // Now we call on our setter to set stringNumber1 as the side1 after we have successfully parsed our string into an integer
+                    tri.SetSide1(int.Parse(stringNumber1));
+                    tri.SetSide2(int.Parse(stringNumber2));
+                    tri.SetSide3(int.Parse(stringNumber3));
+                    ConfirmOrEditTriangle(tri);
+
+                }
+
+            }
+
         }
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -135,36 +210,36 @@ namespace ShapeTracker
 
 // Now moving on with my application
 // Having talked about APIE Encapsulation, Now its time to update our code further and add may more useful tools
-             /*   
-            // updating the entire code to work with the list of triangles(_instances) I now have in me business logic
-            List<Triangle> allTriangles = Triangle.GetAll(); // first we call our Triangle.GetAll() method to get our static list of triangle objects.... There won't be any triangles in it yet at this time but that doesn't matter because the value of the allTriangles variable will update as we create new triangles
-            Triangle testTriangle = new Triangle(3, 4, 5);
-            Triangle secondTriangle = new Triangle(32, 74, 75);
+/*   
+// updating the entire code to work with the list of triangles(_instances) I now have in me business logic
+List<Triangle> allTriangles = Triangle.GetAll(); // first we call our Triangle.GetAll() method to get our static list of triangle objects.... There won't be any triangles in it yet at this time but that doesn't matter because the value of the allTriangles variable will update as we create new triangles
+Triangle testTriangle = new Triangle(3, 4, 5);
+Triangle secondTriangle = new Triangle(32, 74, 75);
 
-            // before the if-statement, we can update our UI logic to clear the triangles before our if statement using the beautiful Triangle.ClearAll() setter-method we wrote in our business logic
-            // This is used to check if my if-statement and my .ClearAll() setter-method actually works
-            // Triangle.ClearAll();
-            // Although I commented it out after I checked whether my if-statement and my .ClearAll() setter-method works
+// before the if-statement, we can update our UI logic to clear the triangles before our if statement using the beautiful Triangle.ClearAll() setter-method we wrote in our business logic
+// This is used to check if my if-statement and my .ClearAll() setter-method actually works
+// Triangle.ClearAll();
+// Although I commented it out after I checked whether my if-statement and my .ClearAll() setter-method works
 
-            // a branch to determine whether or not if our list of triangles is empty
-            // in the else-statement we handle all other cases i.e whern they are triangles in our list
-            if (allTriangles.Count == 0)
-            {
-                Console.WriteLine("There are no triangles");
-            }
-            else
-            {
-                Console.WriteLine("Yay! you have triangles");
-                // the foreach I have here is saying: for each tri(a new variable that stores a triangle object) in allTriangles, I want to use my getter method(in business logic) to display all of the sides that exists in that particular triangle
-                // still in the else-statement if there are triangles, then we loop through the list and print information about each triangle
-                Console.WriteLine("--------------------");
-                foreach (Triangle tri in allTriangles)
-                {
-                    Console.WriteLine($"Side one of the triangle: {tri.GetSide1()}");
-                    Console.WriteLine($"Side two of the triangle: {tri.GetSide2()}");
-                    Console.WriteLine($"Side three of the triangle: {tri.GetSide3()}");
-                    Console.WriteLine("--------------------");
-                }
-            }
+// a branch to determine whether or not if our list of triangles is empty
+// in the else-statement we handle all other cases i.e whern they are triangles in our list
+if (allTriangles.Count == 0)
+{
+   Console.WriteLine("There are no triangles");
+}
+else
+{
+   Console.WriteLine("Yay! you have triangles");
+   // the foreach I have here is saying: for each tri(a new variable that stores a triangle object) in allTriangles, I want to use my getter method(in business logic) to display all of the sides that exists in that particular triangle
+   // still in the else-statement if there are triangles, then we loop through the list and print information about each triangle
+   Console.WriteLine("--------------------");
+   foreach (Triangle tri in allTriangles)
+   {
+       Console.WriteLine($"Side one of the triangle: {tri.GetSide1()}");
+       Console.WriteLine($"Side two of the triangle: {tri.GetSide2()}");
+       Console.WriteLine($"Side three of the triangle: {tri.GetSide3()}");
+       Console.WriteLine("--------------------");
+   }
+}
 
-            */
+*/
