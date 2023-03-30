@@ -60,6 +60,9 @@ namespace ShapeTracker
             // 2. We evaluate the user's response if the triangles are correct, we'l  move on to checkng the type of triangle 
             // And if the triangle's sides are incorrect, we'll gather new values for the triangle's side and then start the confirmation process all over
 
+
+        }
+
             static void ConfirmOrEditTriangle(Triangle tri)
             {
                 Console.WriteLine("Please confirm that you enterred in your triangle correctly:");
@@ -97,11 +100,35 @@ namespace ShapeTracker
                     tri.SetSide3(int.Parse(stringNumber3));
                     ConfirmOrEditTriangle(tri);
 
+                    // one very important thing to notice is the looping we set at the end of our else-statement... After we gather new triangle values, we call ConfirmOrEditTriangle() again 
+                    // This means we'll be prompted again and again to confirm that our triangle's sides are correct unti they actually are.... In other words, the only way to leave the ConfirmOrEditTriangle() method is to verify that the triangle is correct by entering "YES"
+
+                    // In any case, keep in mind that you can create a loop by calling on the same method you are declaring within its own definition(e.g: calling ConfirmOrEditTriangle() within the ConfirmOrEditTriangle() definition)
+
                 }
+
+
 
             }
 
-        }
+            // Creating the CheckTriangleType() method
+            // Bear in mind that we have already called the CheckTriangleType() method inside ConfirmOrEditTriangle() method and passing in our triangle instance tri
+
+            // Keep in mind that we already have a CheckType() method in our business logic 
+            // THe CheckTriangleType() method is a UI method that uses the CheckType() business-logic method to check what type of triangle we have(and the CheckType business logic method can only give us one out of the following: Isoceles, equilateral, scalene, and not a triangle)
+            // Again all of this stress is all for one thing: separation of concerns i.e not expanding the function of one method to another but ensuring methodA does things related to functionality A and methodB does things related to functionality B
+            // Another example of separation of concern is making an addition method carry out only addition, a subtraction method carry out only subtraction e.t.c and not making your addition method do: addition, subtraction and other things at a time
+            // Separation of concern really helps us write good code that can be easily debugged
+            // Like other Ui method, the CheckTriangleType() method is static so that we can call it on the class and not the instance.... And this is important for the method to work as expected
+            // void here means this method returns nothing
+            static void CheckTriangleType(Triangle tri)
+            {
+                string result = tri.CheckType();
+                Console.WriteLine("--------------------------------");
+                Console.WriteLine("Your result is")
+                Console.WriteLine("--------------------------------");
+            }
+
     }
 }
 
