@@ -125,7 +125,7 @@ namespace ShapeTracker
             {
                 string result = tri.CheckType();
                 Console.WriteLine("--------------------------------");
-                Console.WriteLine("Your result is")
+                Console.WriteLine("Your result is");
                 Console.WriteLine("--------------------------------");
             }
 
