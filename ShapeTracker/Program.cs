@@ -66,7 +66,8 @@ namespace ShapeTracker
             static void ConfirmOrEditTriangle(Triangle tri)
             {
                 Console.WriteLine("Please confirm that you enterred in your triangle correctly:");
-                Console.WriteLine($"Side 1 has the length of {tri.GetSide1}");
+                // Console.WriteLine($"Side 1 has the length of {tri.GetSide1}"); ---> Since I am now working with C# Properties I will now update this from tri.GetSide1 to tri.Side1
+                Console.WriteLine($"Side 1 has the length of {tri.Side1}");
                 Console.WriteLine($"Side 2 has the length of {tri.GetSide2}");
                 Console.WriteLine($"Side 3 has the length of {tri.GetSide3}");
                 Console.WriteLine();
@@ -95,7 +96,9 @@ namespace ShapeTracker
                     string stringNumber3 = Console.ReadLine();
 
                     // Now we call on our setter to set stringNumber1 as the side1 after we have successfully parsed our string into an integer
-                    tri.SetSide1(int.Parse(stringNumber1));
+                    // Since I have also updated my busines logic from a setter method(SetSide1) to properties; I need to update all my UI logic too from tri.SetSide1(stringNumber) to tri.Side1 = stringNumber1.
+
+                    tri.Side1 = int.Parse(stringNumber1);
                     tri.SetSide2(int.Parse(stringNumber2));
                     tri.SetSide3(int.Parse(stringNumber3));
                     ConfirmOrEditTriangle(tri);
