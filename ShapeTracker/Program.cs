@@ -80,8 +80,8 @@ namespace ShapeTracker
                 {
                     // Here we just call on the .CheckTriangleType() UI method and this chescks the type of a triangle(e.g: isoceles)
                     // we made this a method instead of writing the code here to practice a good separation of concerns(since edit functionality is different from triangle type check functionality its best to separate them into different methods)
-                    // Although we have not created that method yet
-                    CheckTriangleType();
+                    // Although we have not created that method yet.... we also pass in our triangle instance tri in this method
+                    CheckTriangleType(tri);
                 }
                 else
                 {
@@ -103,7 +103,7 @@ namespace ShapeTracker
                     // one very important thing to notice is the looping we set at the end of our else-statement... After we gather new triangle values, we call ConfirmOrEditTriangle() again 
                     // This means we'll be prompted again and again to confirm that our triangle's sides are correct unti they actually are.... In other words, the only way to leave the ConfirmOrEditTriangle() method is to verify that the triangle is correct by entering "YES"
 
-                    // In any case, keep in mind that you can create a loop by calling on the same method you are declaring within its own definition(e.g: calling ConfirmOrEditTriangle() within the ConfirmOrEditTriangle() definition)
+                    // In any case, keep in mind that you can create a loop by calling on the same method you are declaring within its own definition(e.g: calling ConfirmOrEditTriangle() within the ConfirmOrEditTriangle() definition).... So when we call our method(ConfirmOrEdit()) inside the block of code where we created the ConfirmOrEdit() method, we are basically creating a loop )
 
                 }
 
@@ -120,13 +120,30 @@ namespace ShapeTracker
             // Another example of separation of concern is making an addition method carry out only addition, a subtraction method carry out only subtraction e.t.c and not making your addition method do: addition, subtraction and other things at a time
             // Separation of concern really helps us write good code that can be easily debugged
             // Like other Ui method, the CheckTriangleType() method is static so that we can call it on the class and not the instance.... And this is important for the method to work as expected
+            // if we didnt make it a static method, it returns nothing and accepts a triangle object as an argument
             // void here means this method returns nothing
             static void CheckTriangleType(Triangle tri)
             {
                 string result = tri.CheckType();
                 Console.WriteLine("--------------------------------");
-                Console.WriteLine("Your result is");
+                Console.WriteLine($"Your result is {result}");
                 Console.WriteLine("--------------------------------");
+                Console.WriteLine();
+                Console.WriteLine("What's next?");
+                Console.WriteLine("Would you like to check a new triangle (new)?");
+                Console.WriteLine("Please enter 'new' to check the type of a new triangle. To exit, enter any key.");
+                // I used .ToUpper() here to convert the string uuser gices me to Uppercases so I don't have to use ||(or) multiple times
+                string userResponse = Console.ReadLine().ToUpper();
+                if (userResponse == "NEW")
+                {
+                    Main();
+                    // This aspect of the code can be easily understood, here is an add-on to it.... 
+                    // While .NET uses the Main() method internally as the entry point to our application, we can also call this method wherever in our UI logic to loop back to the start of our program... Thats what we do in the first if statement
+                }
+                else{
+                    Console.WriteLine("Goodbye!");
+                }
+
             }
 
     }
