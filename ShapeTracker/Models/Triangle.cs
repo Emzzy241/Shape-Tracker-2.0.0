@@ -39,7 +39,18 @@ namespace ShapeTracker.Models
     public class Triangle
     {
         // Here is what a C# field looks like:
+
+        // We want to update our code to work with C# properties; and a C# property is a shortcut to writing getter and setter methods and its also a mechanism that we can add to our classes to read, write and compute the value of class fields.. By "mechanism" we really mean that properties are a special type of public method that allows us to access class fields... And you should note that properties do NOT look like methods and they have special syntax
+        // Having defined C# properties, you might be thinking: if properties are special methods that allows us to access our class's fields, why do we need them since we already have our gettter and setter method that do just that... Well the short answer to that question is that properties are a synthatic shortcut to creating public getter and setter methods
+
         private int _side1;
+        // Here is the beginning of the new code we added for properties
+        public int Side1{
+            get { return _side1; }
+            set { _side1 = value; }
+        }
+        // Here is the ending section of the new code we added for properties
+
         private int _side2;
         private int _side3;
         // The 3 fields: Side1, Side2, Side3. These are meant to hold the three integer values that we'll use to determine the type of a triangle.
@@ -51,7 +62,7 @@ namespace ShapeTracker.Models
         // As far as naming conventions, public fields should be in Pascal case, or UpperCamelCase.... We used Side1, but we can also use SideOne.
 
         
-        // when we create a static field or method for a class, i should contain data or perform functionality that's relevant to the entire class
+        // when we create a static field or method for a class, I should contain data or perform functionality that's relevant to the entire class
         // Since we want to create instances of the Triangle class, we'll want to create a field or method that's relevant to the entire class
         // Having said all of the above, lets create a new folder called _instances that will hold a list of all Triangle objects ever created, 
         // and add two methods that will allow us to access and clear the list
@@ -98,10 +109,13 @@ namespace ShapeTracker.Models
         // Any parameters go between the Parens() follwing the method name
         // Between the two curly braces {} is the body of our method --- i.e any code that we want to run
         
+        
         // for the getter methods
-        public int GetSide1(){
-            return _side1;
-        }
+        // public int GetSide1(){
+        //     return _side1;
+        // }
+
+       
         
         public int GetSide2(){
             return _side2;
@@ -120,10 +134,10 @@ namespace ShapeTracker.Models
         // we perform the assignment within the body of the method
         // Take note that we could update these methods(Setter() methods) to do more actions than just assign the value of the parameter to the field. For example, we could check if parameter value meets certain requirements before assigning it as the value of our field. In this way, we have control over how the data for each field is set
         // Finally, remember that we don't need to create a setter method if we don't need it. In other words, only create a setter method if you need to set the value of the private field outside of the class it belongs to
-        public void SetSide1(int newSide)
-        {
-            _side1 = newSide;
-        }
+        // public void SetSide1(int newSide)
+        // {
+        //     _side1 = newSide;
+        // }
 
         public void SetSide2(int newSide)
         {
