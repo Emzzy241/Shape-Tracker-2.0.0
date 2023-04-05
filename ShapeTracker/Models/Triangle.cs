@@ -51,7 +51,15 @@ namespace ShapeTracker.Models
         }
         // Here is the ending section of the new code we added for properties
 
-        private int _side2;
+        // above, we have introduced our self to c# properties; but in C# there is also a term called: auto-implemented Properties and this is an ever 
+        // shorter shortcut to what we did above for side1; above we did it in 2 lines, Now we want to be able to 1. create a private field, 2. create a public property, and 3 create get and set actions(methods) to access those private fields we have just created.... 
+        // all in one line of code which is this:
+
+        public int Side2{ get; set; } // the new Side2 auto-implemented property
+        // The major difference between what I did in Side1 and here is that: in Side1; this line of code(private int _side2;) is not needed because I did not later make use of the private field _side2 but in the previous one I did above; I used both Side1 and _side1 but here I am doing everyhting in a single line of code and I am using only Side2 and not Side2 with private field(_side2)
+        // Since I am doing everything with Side2, then I can update my CheckType() method reference only Side2
+
+        // private int _side2;
         private int _side3;
         // The 3 fields: Side1, Side2, Side3. These are meant to hold the three integer values that we'll use to determine the type of a triangle.
         // As we can also see, Side1, Side2, Side3 look like variables declared within a C# class. Well that's what a field is in C#
@@ -81,7 +89,7 @@ namespace ShapeTracker.Models
         public Triangle(int length1, int length2, int length3)
         {
             _side1 = length1;
-            _side2 = length2;
+            Side2 = length2;
             _side3 = length3;
             _instances.Add(this); //after making use of the built-in .Add() method, we pass "this" into it ---> and "this" is the special keyword that represents the object instance(example) being created
         }
@@ -116,10 +124,10 @@ namespace ShapeTracker.Models
         // }
 
        
-        
-        public int GetSide2(){
-            return _side2;
-        }
+        // commenting this one out because I have written my getter and setter for Side2 all in one line by making use of the auto-implemented property(public int Side2{ get; set; })
+        // public int GetSide2(){
+        //     return _side2;
+        // }
         
         public int GetSide3(){
             return _side3;
@@ -139,10 +147,12 @@ namespace ShapeTracker.Models
         //     _side1 = newSide;
         // }
 
-        public void SetSide2(int newSide)
-        {
-            _side2 = newSide;
-        }
+        // I don't need this setter also because I have written bith my getter and setter for Side2 all in one line by making use of the auto-implemented property(public int Side2{ get; set; })
+
+        // public void SetSide2(int newSide)
+        // {
+        //     _side2 = newSide;
+        // }
 
         public void SetSide3(int newSide)
         {
@@ -179,17 +189,17 @@ namespace ShapeTracker.Models
             // the first branching would be for the logic: not a triangle
             // You should already know one of the basic rules of triangle states that: the addition of 2 other sides must be equal one of the side... and with the below branching we were able to achieve that rule for all Triangles
 
-            if(_side1 > (_side2 + _side3) || _side2 > (_side1 + _side3) || _side3 > (_side1 + _side2))
+            if(_side1 > (Side2 + _side3) || Side2 > (_side1 + _side3) || _side3 > (_side1 + Side2))
             {
                 return "not a triangle";
             }
             // for the 2nd branch we determine if none of the 3 sides are equal, then we know it is a scalene triangle
-            else if ((_side1 != _side2) && (_side2 != _side3) && (_side1 != _side3))
+            else if ((_side1 != Side2) && (Side2 != _side3) && (_side1 != _side3))
             {
                 return "Scalene Triangle";                
             }
             // the next branch deterines if our triangle is an equilateral triangle; don't forget thecomparism operator in C# is '==' and not '===' lke in JavaScript
-            else if((_side1 == _side2) && (_side1 == _side3))
+            else if((_side1 == Side2) && (_side1 == _side3))
             {
                 return "Equilateral triangle";
 

@@ -67,8 +67,10 @@ namespace ShapeTracker
             {
                 Console.WriteLine("Please confirm that you enterred in your triangle correctly:");
                 // Console.WriteLine($"Side 1 has the length of {tri.GetSide1}"); ---> Since I am now working with C# Properties I will now update this from tri.GetSide1 to tri.Side1
+                // Also for Side2, now; since I have now used an auto-implemented property that refactors my code into one line and with that one line I am able to create a private field, a public property and create get and set actionsto access the eprivate field and again; all this is done in one line thanks to an auto-implemented property
+                // I change GetSide2 to Side2....I have deleted the getter and setter method for it and done all I need to do on it in one line; all thanks to auto-implemented property
                 Console.WriteLine($"Side 1 has the length of {tri.Side1}");
-                Console.WriteLine($"Side 2 has the length of {tri.GetSide2}");
+                Console.WriteLine($"Side 2 has the length of {tri.Side2}");
                 Console.WriteLine($"Side 3 has the length of {tri.GetSide3}");
                 Console.WriteLine();
                 Console.WriteLine("Is that correct? Enter 'yes' to proceed, or 'no' to re-enter the triangle's sides");
@@ -99,7 +101,7 @@ namespace ShapeTracker
                     // Since I have also updated my busines logic from a setter method(SetSide1) to properties; I need to update all my UI logic too from tri.SetSide1(stringNumber) to tri.Side1 = stringNumber1.
 
                     tri.Side1 = int.Parse(stringNumber1);
-                    tri.SetSide2(int.Parse(stringNumber2));
+                    tri.Side2 = int.Parse(stringNumber2);
                     tri.SetSide3(int.Parse(stringNumber3));
                     ConfirmOrEditTriangle(tri);
 
