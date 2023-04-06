@@ -22,6 +22,20 @@ namespace ShapeTracker
 
             Console.WriteLine("*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~");
             Console.WriteLine("Welcome to the Shape Tracker app!");
+            public static string Welcome = @"
+                ####
+               #
+               #
+                #### 
+                     
+                     #
+                     #
+                    #
+                
+
+            // Console.WriteLine
+            
+            
             Console.WriteLine("We'll calculate what type of triangle you have based off of the lengths of the triangle's 3 sides.");
 
             // AFTER THE WELCOME MESSAGE, now let;s give our users the ability to create Triangles
