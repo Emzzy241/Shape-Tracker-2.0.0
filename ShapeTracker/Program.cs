@@ -23,14 +23,14 @@ namespace ShapeTracker
             Console.WriteLine("*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~");
             Console.WriteLine("Welcome to the Shape Tracker app!");
             public static string Welcome = @"
-                ####
-               #
-               #
+                ####      #
+               #          #    
+               #          #
                 #### 
-                     
                      #
                      #
-                    #
+                     #
+                #### 
                 
 
             // Console.WriteLine
