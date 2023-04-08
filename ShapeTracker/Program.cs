@@ -10,6 +10,18 @@ namespace ShapeTracker
 
     class Program
     {
+            public static string Welcome { get; } = @"
+                ####      #    #
+               #          #    #
+               #          #    #
+                ####      ######
+                     #    #    #
+                     #    #    #
+                     #    #    #
+                ####      #    #
+                                                                                            ";
+
+
         static void Main()
         {
 
@@ -22,25 +34,79 @@ namespace ShapeTracker
 
             Console.WriteLine("*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~");
             Console.WriteLine("Welcome to the Shape Tracker app!");
-            public static string Welcome = @"
-                ####      #
-               #          #    
-               #          #
-                #### 
-                     #
-                     #
-                     #
-                #### 
-                
 
-            // Console.WriteLine
-            
-            
-            Console.WriteLine("We'll calculate what type of triangle you have based off of the lengths of the triangle's 3 sides.");
+
+        // Console.WriteLine
+
+
+        Console.WriteLine("We'll calculate what type of triangle you have based off of the lengths of the triangle's 3 sides.");
 
             // AFTER THE WELCOME MESSAGE, now let;s give our users the ability to create Triangles
             Console.WriteLine();
             Console.WriteLine();
+            Console.WriteLine("Please enter a number:");
+            string stringNumber1 = Console.ReadLine();
+        Console.WriteLine("Enter another number:");
+            string stringNumber2 = Console.ReadLine();
+        Console.WriteLine("Enter a third number:");
+            string stringNumber3 = Console.ReadLine();
+
+        // as you already know, Console.ReadLine() only works with strings and here I'm dealing with numbers, so this strings need to be parsed to actual numbers
+        int length1 = int.Parse(stringNumber1);
+        int length2 = int.Parse(stringNumber2);
+        int length3 = int.Parse(stringNumber3);
+
+        // Here is the final line where we actually create a new triangle oject with the user's inputted numbers
+
+        Triangle tri = new Triangle(length1, length2, length3);
+
+        // Now we want to add in a new UI method for editting the Triangle user just created
+        // Any new method we create in our Program class(that contains our UI logic) shoul dbe static. We don't want to have to create an instance of the Program class inorder to call the method
+
+
+        // calling our static-void method that edits triangles my user has just created
+        // Note that: since this methods aim is to edit Triangles, then the triangle object(tri) my user has just created needs to be passed into it
+        // by passing in tri; it enables us to use and manipulate the same data, even though our logic is separated into multiple methods
+        // Take note that it's required for UI methods to be static, but the return type and whether or not we have parameters should be whatever makes sense for our application's needs.
+        // Our UI methods need to be static so that we don't have to create an instance of the Program class before calling an of them. Instead, as a static method, we can call on the method directly, anywhere within our class
+        ConfirmOrEditTriangle(tri);
+
+
+        // Now we have called our method and its time to write it, here are  couple of things our method will be doing:
+        // 1. Display the values for each triangle's side and ask the user if they inputted the correct values, and gather their response.
+        // 2. We evaluate the user's response if the triangles are correct, we'l  move on to checkng the type of triangle 
+        // And if the triangle's sides are incorrect, we'll gather new values for the triangle's side and then start the confirmation process all over
+
+
+    }
+
+    static void ConfirmOrEditTriangle(Triangle tri)
+    {
+        Console.WriteLine("Please confirm that you enterred in your triangle correctly:");
+        // Console.WriteLine($"Side 1 has the length of {tri.GetSide1}"); ---> Since I am now working with C# Properties I will now update this from tri.GetSide1 to tri.Side1
+        // Also for Side2, now; since I have now used an auto-implemented property that refactors my code into one line and with that one line I am able to create a private field, a public property and create get and set actionsto access the eprivate field and again; all this is done in one line thanks to an auto-implemented property
+        // I change GetSide2 to Side2....I have deleted the getter and setter method for it and done all I need to do on it in one line; all thanks to auto-implemented property
+        Console.WriteLine($"Side 1 has the length of {tri.Side1}");
+        Console.WriteLine($"Side 2 has the length of {tri.Side2}");
+        Console.WriteLine($"Side 3 has the length of {tri.GetSide3}");
+        Console.WriteLine();
+        Console.WriteLine("Is that correct? Enter 'yes' to proceed, or 'no' to re-enter the triangle's sides");
+        string userInput = Console.ReadLine().ToUpper();
+
+        // I used .ToUpper() just because I wanted to ensure my application sees a yes as a YES or yES(i.e just ensuring my app works with different forms of capitalization)
+
+        // Now let us move on to branching that determines whether user would like to change the 3 values they gave me for the triangl eobject or not
+        if (userInput == "YES")
+        {
+            // Here we just call on the .CheckTriangleType() UI method and this chescks the type of a triangle(e.g: isoceles)
+            // we made this a method instead of writing the code here to practice a good separation of concerns(since edit functionality is different from triangle type check functionality its best to separate them into different methods)
+            // Although we have not created that method yet.... we also pass in our triangle instance tri in this method
+            CheckTriangleType(tri);
+        }
+        else
+        {
+            Console.WriteLine("Let's fix your triangle. Please enter the 3 sides again");
+            Console.WriteLine("Please enter a number");
             Console.WriteLine("Please enter a number:");
             string stringNumber1 = Console.ReadLine();
             Console.WriteLine("Enter another number:");
@@ -48,124 +114,62 @@ namespace ShapeTracker
             Console.WriteLine("Enter a third number:");
             string stringNumber3 = Console.ReadLine();
 
-            // as you already know, Console.ReadLine() only works with strings and here I'm dealing with numbers, so this strings need to be parsed to actual numbers
-            int length1 = int.Parse(stringNumber1);
-            int length2 = int.Parse(stringNumber2);
-            int length3 = int.Parse(stringNumber3);
+            // Now we call on our setter to set stringNumber1 as the side1 after we have successfully parsed our string into an integer
+            // Since I have also updated my busines logic from a setter method(SetSide1) to properties; I need to update all my UI logic too from tri.SetSide1(stringNumber) to tri.Side1 = stringNumber1.
 
-            // Here is the final line where we actually create a new triangle oject with the user's inputted numbers
-
-            Triangle tri = new Triangle(length1, length2, length3);
-
-            // Now we want to add in a new UI method for editting the Triangle user just created
-            // Any new method we create in our Program class(that contains our UI logic) shoul dbe static. We don't want to have to create an instance of the Program class inorder to call the method
-
-
-            // calling our static-void method that edits triangles my user has just created
-            // Note that: since this methods aim is to edit Triangles, then the triangle object(tri) my user has just created needs to be passed into it
-            // by passing in tri; it enables us to use and manipulate the same data, even though our logic is separated into multiple methods
-            // Take note that it's required for UI methods to be static, but the return type and whether or not we have parameters should be whatever makes sense for our application's needs.
-            // Our UI methods need to be static so that we don't have to create an instance of the Program class before calling an of them. Instead, as a static method, we can call on the method directly, anywhere within our class
+            tri.Side1 = int.Parse(stringNumber1);
+            tri.Side2 = int.Parse(stringNumber2);
+            tri.SetSide3(int.Parse(stringNumber3));
             ConfirmOrEditTriangle(tri);
 
+            // one very important thing to notice is the looping we set at the end of our else-statement... After we gather new triangle values, we call ConfirmOrEditTriangle() again 
+            // This means we'll be prompted again and again to confirm that our triangle's sides are correct unti they actually are.... In other words, the only way to leave the ConfirmOrEditTriangle() method is to verify that the triangle is correct by entering "YES"
 
-            // Now we have called our method and its time to write it, here are  couple of things our method will be doing:
-            // 1. Display the values for each triangle's side and ask the user if they inputted the correct values, and gather their response.
-            // 2. We evaluate the user's response if the triangles are correct, we'l  move on to checkng the type of triangle 
-            // And if the triangle's sides are incorrect, we'll gather new values for the triangle's side and then start the confirmation process all over
-
+            // In any case, keep in mind that you can create a loop by calling on the same method you are declaring within its own definition(e.g: calling ConfirmOrEditTriangle() within the ConfirmOrEditTriangle() definition).... So when we call our method(ConfirmOrEdit()) inside the block of code where we created the ConfirmOrEdit() method, we are basically creating a loop )
 
         }
 
-            static void ConfirmOrEditTriangle(Triangle tri)
-            {
-                Console.WriteLine("Please confirm that you enterred in your triangle correctly:");
-                // Console.WriteLine($"Side 1 has the length of {tri.GetSide1}"); ---> Since I am now working with C# Properties I will now update this from tri.GetSide1 to tri.Side1
-                // Also for Side2, now; since I have now used an auto-implemented property that refactors my code into one line and with that one line I am able to create a private field, a public property and create get and set actionsto access the eprivate field and again; all this is done in one line thanks to an auto-implemented property
-                // I change GetSide2 to Side2....I have deleted the getter and setter method for it and done all I need to do on it in one line; all thanks to auto-implemented property
-                Console.WriteLine($"Side 1 has the length of {tri.Side1}");
-                Console.WriteLine($"Side 2 has the length of {tri.Side2}");
-                Console.WriteLine($"Side 3 has the length of {tri.GetSide3}");
-                Console.WriteLine();
-                Console.WriteLine("Is that correct? Enter 'yes' to proceed, or 'no' to re-enter the triangle's sides");
-                string userInput = Console.ReadLine().ToUpper();
 
-                // I used .ToUpper() just because I wanted to ensure my application sees a yes as a YES or yES(i.e just ensuring my app works with different forms of capitalization)
-
-                // Now let us move on to branching that determines whether user would like to change the 3 values they gave me for the triangl eobject or not
-                if (userInput == "YES")
-                {
-                    // Here we just call on the .CheckTriangleType() UI method and this chescks the type of a triangle(e.g: isoceles)
-                    // we made this a method instead of writing the code here to practice a good separation of concerns(since edit functionality is different from triangle type check functionality its best to separate them into different methods)
-                    // Although we have not created that method yet.... we also pass in our triangle instance tri in this method
-                    CheckTriangleType(tri);
-                }
-                else
-                {
-                    Console.WriteLine("Let's fix your triangle. Please enter the 3 sides again");
-                    Console.WriteLine("Please enter a number");
-                    Console.WriteLine("Please enter a number:");
-                    string stringNumber1 = Console.ReadLine();
-                    Console.WriteLine("Enter another number:");
-                    string stringNumber2 = Console.ReadLine();
-                    Console.WriteLine("Enter a third number:");
-                    string stringNumber3 = Console.ReadLine();
-
-                    // Now we call on our setter to set stringNumber1 as the side1 after we have successfully parsed our string into an integer
-                    // Since I have also updated my busines logic from a setter method(SetSide1) to properties; I need to update all my UI logic too from tri.SetSide1(stringNumber) to tri.Side1 = stringNumber1.
-
-                    tri.Side1 = int.Parse(stringNumber1);
-                    tri.Side2 = int.Parse(stringNumber2);
-                    tri.SetSide3(int.Parse(stringNumber3));
-                    ConfirmOrEditTriangle(tri);
-
-                    // one very important thing to notice is the looping we set at the end of our else-statement... After we gather new triangle values, we call ConfirmOrEditTriangle() again 
-                    // This means we'll be prompted again and again to confirm that our triangle's sides are correct unti they actually are.... In other words, the only way to leave the ConfirmOrEditTriangle() method is to verify that the triangle is correct by entering "YES"
-
-                    // In any case, keep in mind that you can create a loop by calling on the same method you are declaring within its own definition(e.g: calling ConfirmOrEditTriangle() within the ConfirmOrEditTriangle() definition).... So when we call our method(ConfirmOrEdit()) inside the block of code where we created the ConfirmOrEdit() method, we are basically creating a loop )
-
-                }
-
-
-
-            }
-
-            // Creating the CheckTriangleType() method
-            // Bear in mind that we have already called the CheckTriangleType() method inside ConfirmOrEditTriangle() method and passing in our triangle instance tri
-
-            // Keep in mind that we already have a CheckType() method in our business logic 
-            // THe CheckTriangleType() method is a UI method that uses the CheckType() business-logic method to check what type of triangle we have(and the CheckType business logic method can only give us one out of the following: Isoceles, equilateral, scalene, and not a triangle)
-            // Again all of this stress is all for one thing: separation of concerns i.e not expanding the function of one method to another but ensuring methodA does things related to functionality A and methodB does things related to functionality B
-            // Another example of separation of concern is making an addition method carry out only addition, a subtraction method carry out only subtraction e.t.c and not making your addition method do: addition, subtraction and other things at a time
-            // Separation of concern really helps us write good code that can be easily debugged
-            // Like other Ui method, the CheckTriangleType() method is static so that we can call it on the class and not the instance.... And this is important for the method to work as expected
-            // if we didnt make it a static method, it returns nothing and accepts a triangle object as an argument
-            // void here means this method returns nothing
-            static void CheckTriangleType(Triangle tri)
-            {
-                string result = tri.CheckType();
-                Console.WriteLine("--------------------------------");
-                Console.WriteLine($"Your result is {result}");
-                Console.WriteLine("--------------------------------");
-                Console.WriteLine();
-                Console.WriteLine("What's next?");
-                Console.WriteLine("Would you like to check a new triangle (new)?");
-                Console.WriteLine("Please enter 'new' to check the type of a new triangle. To exit, enter any key.");
-                // I used .ToUpper() here to convert the string uuser gices me to Uppercases so I don't have to use ||(or) multiple times
-                string userResponse = Console.ReadLine().ToUpper();
-                if (userResponse == "NEW")
-                {
-                    Main();
-                    // This aspect of the code can be easily understood, here is an add-on to it.... 
-                    // While .NET uses the Main() method internally as the entry point to our application, we can also call this method wherever in our UI logic to loop back to the start of our program... Thats what we do in the first if statement
-                }
-                else{
-                    Console.WriteLine("Goodbye!");
-                }
-
-            }
 
     }
+
+    // Creating the CheckTriangleType() method
+    // Bear in mind that we have already called the CheckTriangleType() method inside ConfirmOrEditTriangle() method and passing in our triangle instance tri
+
+    // Keep in mind that we already have a CheckType() method in our business logic 
+    // THe CheckTriangleType() method is a UI method that uses the CheckType() business-logic method to check what type of triangle we have(and the CheckType business logic method can only give us one out of the following: Isoceles, equilateral, scalene, and not a triangle)
+    // Again all of this stress is all for one thing: separation of concerns i.e not expanding the function of one method to another but ensuring methodA does things related to functionality A and methodB does things related to functionality B
+    // Another example of separation of concern is making an addition method carry out only addition, a subtraction method carry out only subtraction e.t.c and not making your addition method do: addition, subtraction and other things at a time
+    // Separation of concern really helps us write good code that can be easily debugged
+    // Like other Ui method, the CheckTriangleType() method is static so that we can call it on the class and not the instance.... And this is important for the method to work as expected
+    // if we didnt make it a static method, it returns nothing and accepts a triangle object as an argument
+    // void here means this method returns nothing
+    static void CheckTriangleType(Triangle tri)
+    {
+        string result = tri.CheckType();
+        Console.WriteLine("--------------------------------");
+        Console.WriteLine($"Your result is {result}");
+        Console.WriteLine("--------------------------------");
+        Console.WriteLine();
+        Console.WriteLine("What's next?");
+        Console.WriteLine("Would you like to check a new triangle (new)?");
+        Console.WriteLine("Please enter 'new' to check the type of a new triangle. To exit, enter any key.");
+        // I used .ToUpper() here to convert the string uuser gices me to Uppercases so I don't have to use ||(or) multiple times
+        string userResponse = Console.ReadLine().ToUpper();
+        if (userResponse == "NEW")
+        {
+            Main();
+            // This aspect of the code can be easily understood, here is an add-on to it.... 
+            // While .NET uses the Main() method internally as the entry point to our application, we can also call this method wherever in our UI logic to loop back to the start of our program... Thats what we do in the first if statement
+        }
+        else
+        {
+            Console.WriteLine("Goodbye!");
+        }
+
+    }
+
+}
 }
 
 
