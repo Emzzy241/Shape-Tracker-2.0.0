@@ -61,6 +61,10 @@ namespace ShapeTracker.Models
 
         // private int _side2;
         private int _side3;
+        public int Side3{
+            get { return _side3; }
+            set { _side3 = value; }
+        }
         // The 3 fields: Side1, Side2, Side3. These are meant to hold the three integer values that we'll use to determine the type of a triangle.
         // As we can also see, Side1, Side2, Side3 look like variables declared within a C# class. Well that's what a field is in C#
         // We can also describe this fields as members of the Triangle class, since they belong to the Triangle class
@@ -90,7 +94,7 @@ namespace ShapeTracker.Models
         {
             _side1 = length1;
             Side2 = length2;
-            _side3 = length3;
+            Side3 = length3;
             _instances.Add(this); //after making use of the built-in .Add() method, we pass "this" into it ---> and "this" is the special keyword that represents the object instance(example) being created
         }
         // To create a class constructor, we simply need to define a method of the SAME NAME of the class
@@ -129,9 +133,9 @@ namespace ShapeTracker.Models
         //     return _side2;
         // }
         
-        public int GetSide3(){
-            return _side3;
-        }
+        // public int GetSide3(){
+        //     return _side3;
+        // }
 
         // for the setter methods
         // Although, our simple triangle functionality doesn't really need the ability to change the value of a side(what the Setter() method does for us) but we'll add it in to practice with getter methods
@@ -154,10 +158,10 @@ namespace ShapeTracker.Models
         //     _side2 = newSide;
         // }
 
-        public void SetSide3(int newSide)
-        {
-            _side3 = newSide;
-        }
+        // public void SetSide3(int newSide)
+        // {
+        //     _side3 = newSide;
+        // }
 
         // 2 new public and staic methods with oe serving as a getter and the other one serves as a setter 
         // dont' forget; this 2 getter and setter public-static methods are tools for accessing and managing the list(_instances and this is a list of triangle objects) outside of our classes
@@ -189,17 +193,17 @@ namespace ShapeTracker.Models
             // the first branching would be for the logic: not a triangle
             // You should already know one of the basic rules of triangle states that: the addition of 2 other sides must be equal one of the side... and with the below branching we were able to achieve that rule for all Triangles
 
-            if(_side1 > (Side2 + _side3) || Side2 > (_side1 + _side3) || _side3 > (_side1 + Side2))
+            if(_side1 > (Side2 + Side3) || Side2 > (_side1 + Side3) || Side3 > (_side1 + Side2))
             {
                 return "not a triangle";
             }
             // for the 2nd branch we determine if none of the 3 sides are equal, then we know it is a scalene triangle
-            else if ((_side1 != Side2) && (Side2 != _side3) && (_side1 != _side3))
+            else if ((_side1 != Side2) && (Side2 != Side3) && (_side1 != Side3))
             {
                 return "Scalene Triangle";                
             }
             // the next branch deterines if our triangle is an equilateral triangle; don't forget thecomparism operator in C# is '==' and not '===' lke in JavaScript
-            else if((_side1 == Side2) && (_side1 == _side3))
+            else if((_side1 == Side2) && (_side1 == Side3))
             {
                 return "Equilateral triangle";
 
