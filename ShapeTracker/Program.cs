@@ -164,7 +164,7 @@ namespace ShapeTracker
                     Console.WriteLine();
                     Console.WriteLine("What's next?");
                     Console.WriteLine("Would you like to check a new shape (new)?");
-                    Console.WriteLine("Please enter 'new' to check the type of a new shape. To exit, enter any key.");
+                    Console.WriteLine("Please enter 'new' to check the type of a new shape, enter 'get' to get all triangles. To exit, enter X.");
                     // I used .ToUpper() here to convert the string uuser gices me to Uppercases so I don't have to use ||(or) multiple times
                     string userResponse = Console.ReadLine().ToUpper();
                     if (userResponse == "NEW")
@@ -173,10 +173,19 @@ namespace ShapeTracker
                         // This aspect of the code can be easily understood, here is an add-on to it.... 
                         // While .NET uses the Main() method internally as the entry point to our application, we can also call this method wherever in our UI logic to loop back to the start of our program... Thats what we do in the first if statement
                     }
-                    else
+                    else if(userResponse == "GET")
+                    {
+                        GetAllTriangles();
+                    }
+                    else if(userResponse == "X")
                     {
                         Console.WriteLine("Goodbye!");
                     }
+                    else{
+                        Console.WriteLine("Sorry, I didn't get that.... Please try again");
+                        Main();
+                    }
+                    
 
                 }
 
@@ -187,11 +196,11 @@ namespace ShapeTracker
                 // my method will be statc because I don't want to have to reinstantiate a new instance before I can work with it 
                 // And my method is void because I want it returning nothing to me
 
-                static void GetAllTriangles(Triangle newList)
+                static void GetAllTriangles()
                 {
-                    List<Triangle> newTriangleList = new List<Triangle>() { newList.GetAll() };
+                    List<Triangle> newTriangleList = Triangle.GetAll();
                     Console.WriteLine("--------------------------------");
-                    Console.WriteLine($"Here is a list of all the Triangles {result}");
+                    Console.WriteLine($"Here is a list of all the Triangles {newTriangleList}");
                     Console.WriteLine("--------------------------------");
 
                 }

@@ -34,7 +34,7 @@ namespace ShapeTracker.Models
     // First we add fields..... To explain fields, a C# field is eactly what a Javascript property is 
     // In more technical terms, a C# field is a variable of any type that is declared directly in a Class.
     // Here we declared our fields as variables of the integer datatype in our Triangle class
-    
+
     // As you can see, the Triangle is a class; inside of it we have fields and we set the access level(public) for our fields.... Again, the publi access level modifier just ensures our class(Triangle) can be accessed anywhere in our application
     public class Triangle
     {
@@ -45,7 +45,8 @@ namespace ShapeTracker.Models
 
         private int _side1;
         // Here is the beginning of the new code we added for properties
-        public int Side1{
+        public int Side1
+        {
             get { return _side1; }
             set { _side1 = value; }
         }
@@ -55,13 +56,14 @@ namespace ShapeTracker.Models
         // shorter shortcut to what we did above for side1; above we did it in 2 lines, Now we want to be able to 1. create a private field, 2. create a public property, and 3 create get and set actions(methods) to access those private fields we have just created.... 
         // all in one line of code which is this:
 
-        public int Side2{ get; set; } // the new Side2 auto-implemented property
+        public int Side2 { get; set; } // the new Side2 auto-implemented property
         // The major difference between what I did in Side1 and here is that: in Side1; this line of code(private int _side2;) is not needed because I did not later make use of the private field _side2 but in the previous one I did above; I used both Side1 and _side1 but here I am doing everyhting in a single line of code and I am using only Side2 and not Side2 with private field(_side2)
         // Since I am doing everything with Side2, then I can update my CheckType() method reference only Side2
 
         // private int _side2;
         private int _side3;
-        public int Side3{
+        public int Side3
+        {
             get { return _side3; }
             set { _side3 = value; }
         }
@@ -73,7 +75,7 @@ namespace ShapeTracker.Models
         // And lastly the keyword public is one of many access level modifiers. As modifiers, keywords like public specify level of protection this data has in our application. As public, our three fieldscan be accessed from anywhere in the application
         // As far as naming conventions, public fields should be in Pascal case, or UpperCamelCase.... We used Side1, but we can also use SideOne.
 
-        
+
         // when we create a static field or method for a class, I should contain data or perform functionality that's relevant to the entire class
         // Since we want to create instances of the Triangle class, we'll want to create a field or method that's relevant to the entire class
         // Having said all of the above, lets create a new folder called _instances that will hold a list of all Triangle objects ever created, 
@@ -85,10 +87,10 @@ namespace ShapeTracker.Models
 
 
         // ADDING A CONSTRUCTOR
-            // After we have added all our fields, let us now improve our lives as developers and add a custom constructor that sets the values of the three sides when the triangle is created 
-            // A constructor is a method that is called when a new instance of a class is created. Any information regarding the initial setup of new object can be included in a constructor 
-            // HERE IS OUR CONSTRUCTOR
-            // I later updated my constructor to use to add new objectsdirctly to our static list... We can use the keyword "this" within our constructor to reference th eobject instance that i sbeing created
+        // After we have added all our fields, let us now improve our lives as developers and add a custom constructor that sets the values of the three sides when the triangle is created 
+        // A constructor is a method that is called when a new instance of a class is created. Any information regarding the initial setup of new object can be included in a constructor 
+        // HERE IS OUR CONSTRUCTOR
+        // I later updated my constructor to use to add new objectsdirctly to our static list... We can use the keyword "this" within our constructor to reference th eobject instance that i sbeing created
 
         public Triangle(int length1, int length2, int length3)
         {
@@ -106,7 +108,7 @@ namespace ShapeTracker.Models
         // To use the Constructor, in our UI logic file, we create a new instance of the Trangle object and then we pass in the 3 lengths it needs in it, we can do:
         // Triangle coolTriangle = new Triangle(100, 010, 001); --> here we practicalized hpw we could use our Triangle constructor to create a new instance of the Triangle object... And a triangle object must always and should always contain 3 paramters for 3 sides because thats what I told my constructor to take in before it creates a Trianlg object 
         // Constructors create new instances of a class when the new keyword is used. new denotes that we are creating a new instance of this class
-        
+
         // Now I want to start writing methods for my Triangle class
         // THe first method helps me determine whether 3 given lengths make up an isoceles or equilateral or scalene triangle
         // This method is pretty similar to the method we created in Javascript(the checkType() method)... The only difference here is that we will be using C# and its indentation to write our code instead of using JavaScript
@@ -120,19 +122,19 @@ namespace ShapeTracker.Models
         // CheckType is name of our methods. In C#, methods are named with Pascal Casing(or UpperCamelCase)
         // Any parameters go between the Parens() follwing the method name
         // Between the two curly braces {} is the body of our method --- i.e any code that we want to run
-        
-        
+
+
         // for the getter methods
         // public int GetSide1(){
         //     return _side1;
         // }
 
-       
+
         // commenting this one out because I have written my getter and setter for Side2 all in one line by making use of the auto-implemented property(public int Side2{ get; set; })
         // public int GetSide2(){
         //     return _side2;
         // }
-        
+
         // public int GetSide3(){
         //     return _side3;
         // }
@@ -169,7 +171,7 @@ namespace ShapeTracker.Models
         // Here is the first one; the getter
         public static List<Triangle> GetAll()
         {
-            return  _instances;
+            return _instances;
             // the 2 slight-difference between this getter for our Lists and the other getters we have written in the past is that: 1. we included the static keyword to make this a static method called on the class and we didn't follow the getter Naming convention of: Get+ FieldName in Pascal case
             // If we had follwed the getter naming convention we would have: GetInstances(because instances is our FieldName)... but using GetAll() is totally fine as long as you can understand your code 
             // and remember; a getter helps us get something(in this case our list of triangle object(_instances)).... that is why we are using the "return" built-in keyword 
@@ -181,7 +183,7 @@ namespace ShapeTracker.Models
         // here we do not need to include a built-in List<> keyword beside the name of our setter method unlike we did with getter
         // and this is because our setter doesn't really care whether we are returning a list or a dictionary; here our setter method is to clear all the Triangle objects we have in our list of Triangle(the static field: _instances)
         public static void ClearAll()
-        {   
+        {
             _instances.Clear();
             // within the method body, we call on the built-in List<T>.Clear() method
             // we added void here since all our ClearAll() method is doing is to clear the entire Field and not return us anything ulike the getter
@@ -193,27 +195,28 @@ namespace ShapeTracker.Models
             // the first branching would be for the logic: not a triangle
             // You should already know one of the basic rules of triangle states that: the addition of 2 other sides must be equal one of the side... and with the below branching we were able to achieve that rule for all Triangles
 
-            if(_side1 > (Side2 + Side3) || Side2 > (_side1 + Side3) || Side3 > (_side1 + Side2))
+            if (_side1 > (Side2 + Side3) || Side2 > (_side1 + Side3) || Side3 > (_side1 + Side2))
             {
                 return "not a triangle";
             }
             // for the 2nd branch we determine if none of the 3 sides are equal, then we know it is a scalene triangle
             else if ((_side1 != Side2) && (Side2 != Side3) && (_side1 != Side3))
             {
-                return "Scalene Triangle";                
+                return "Scalene Triangle";
             }
             // the next branch deterines if our triangle is an equilateral triangle; don't forget thecomparism operator in C# is '==' and not '===' lke in JavaScript
-            else if((_side1 == Side2) && (_side1 == Side3))
+            else if ((_side1 == Side2) && (_side1 == Side3))
             {
                 return "Equilateral triangle";
 
             }
-            else{
+            else
+            {
                 return "Isoceles triangle";
             }
 
             // Like I said before, this method is exactly the same with the one written in JavaScript; so for more understanding you can check out the Javascript version for this app which is the version 1.0.0
-            
+
 
         }
 
