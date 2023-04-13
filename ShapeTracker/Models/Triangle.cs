@@ -197,21 +197,26 @@ namespace ShapeTracker.Models
 
             if (_side1 > (Side2 + Side3) || Side2 > (_side1 + Side3) || Side3 > (_side1 + Side2))
             {
-                return "not a triangle";
+                _instances.Add(this);
+                string myReturn = return "not a triangle";
+                // return "not a triangle";
             }
             // for the 2nd branch we determine if none of the 3 sides are equal, then we know it is a scalene triangle
             else if ((_side1 != Side2) && (Side2 != Side3) && (_side1 != Side3))
             {
+                _instances.Add(this);
                 return "Scalene Triangle";
             }
             // the next branch deterines if our triangle is an equilateral triangle; don't forget thecomparism operator in C# is '==' and not '===' lke in JavaScript
             else if ((_side1 == Side2) && (_side1 == Side3))
             {
+                _instances.Add(this);   
                 return "Equilateral triangle";
 
             }
             else
             {
+                _instances.Add(this);
                 return "Isoceles triangle";
             }
 
