@@ -156,9 +156,11 @@ namespace ShapeTracker
                 // void here means this method returns nothing
                 static void CheckTriangleType(Triangle tri)
                 {
+                    // string GetMeAllTriangles = tri.GetAll();
                     string result = tri.CheckType();
                     Console.WriteLine("--------------------------------");
                     Console.WriteLine($"Your result is {result}");
+                    // tri.Add(result);
                     
                     Console.WriteLine("--------------------------------");
                     Console.WriteLine();
@@ -198,10 +200,28 @@ namespace ShapeTracker
 
                 static void GetAllTriangles()
                 {
-                    List<Triangle> newTriangleList = Triangle.GetAll();
-                    Console.WriteLine("--------------------------------");
-                    Console.WriteLine($"Here is a list of all the Triangles {newTriangleList}");
-                    Console.WriteLine("--------------------------------");
+                
+                    // List<string> newTriangleList = new List<string>() { Triangle.GetAll() };
+                    // string listingTriangle = Triangle.GetAll();
+                    // a forloop that will loop through the entire list of triangle and print each one of them to the console
+                    // for (int i = 0; i < newTriangleList.Count; i++)
+                    // {
+                        
+                    // }
+
+                    Console.WriteLine("You inputted get, to get all your triangles; Here they are: ");
+
+                     List<string> newTriangleList = new List<string>(){};
+
+
+                    foreach (string eachTriangle in newTriangleList)
+                    {
+                        Console.WriteLine(eachTriangle);
+                    }
+
+                    // Console.WriteLine("--------------------------------");
+                    // Console.WriteLine($"Here is a list of all the Triangles \n \n {everyTriangle}");
+                    // Console.WriteLine("--------------------------------");
 
                 }
 
@@ -234,7 +254,10 @@ namespace ShapeTracker
 
         }
 
-
+        private static void GetAllTriangles()
+        {
+            throw new NotImplementedException();
+        }
     }
 }
 
