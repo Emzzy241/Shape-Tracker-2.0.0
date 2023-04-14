@@ -198,32 +198,32 @@ namespace ShapeTracker
                 // my method will be statc because I don't want to have to reinstantiate a new instance before I can work with it 
                 // And my method is void because I want it returning nothing to me
 
-                static void GetAllTriangles()
-                {
+                // static void GetAllTriangles()
+                // {
                 
-                    // List<string> newTriangleList = new List<string>() { Triangle.GetAll() };
-                    // string listingTriangle = Triangle.GetAll();
-                    // a forloop that will loop through the entire list of triangle and print each one of them to the console
-                    // for (int i = 0; i < newTriangleList.Count; i++)
-                    // {
+                //     // List<string> newTriangleList = new List<string>() { Triangle.GetAll() };
+                //     // string listingTriangle = Triangle.GetAll();
+                //     // a forloop that will loop through the entire list of triangle and print each one of them to the console
+                //     // for (int i = 0; i < newTriangleList.Count; i++)
+                //     // {
                         
-                    // }
+                //     // }
 
-                    Console.WriteLine("You inputted get, to get all your triangles; Here they are: ");
+                //     Console.WriteLine("You inputted get, to get all your triangles; Here they are: ");
 
-                     List<string> newTriangleList = new List<string>(){};
+                //      List<string> newTriangleList = new List<string>(){};
 
 
-                    foreach (string eachTriangle in newTriangleList)
-                    {
-                        Console.WriteLine(eachTriangle);
-                    }
+                //     foreach (string eachTriangle in newTriangleList)
+                //     {
+                //         Console.WriteLine(eachTriangle);
+                //     }
 
-                    // Console.WriteLine("--------------------------------");
-                    // Console.WriteLine($"Here is a list of all the Triangles \n \n {everyTriangle}");
-                    // Console.WriteLine("--------------------------------");
+                //     // Console.WriteLine("--------------------------------");
+                //     // Console.WriteLine($"Here is a list of all the Triangles \n \n {everyTriangle}");
+                //     // Console.WriteLine("--------------------------------");
 
-                }
+                // }
 
 
 
